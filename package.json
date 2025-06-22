@@ -1,0 +1,22 @@
+{
+  "name": "task-manager-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.16.0",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "jest": "^30.0.2",
+    "supertest": "^7.1.1"
+  }
+  
+}
