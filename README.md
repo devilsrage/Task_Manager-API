@@ -1,221 +1,154 @@
+# 🗂️ Task Manager – Fullstack API Project
 
-# Task Manager API + Frontend (Node.js + Express + SQLite)
+**Task Manager** is a full-stack application that allows users to manage their daily tasks with ease. The app is built with Node.js, Express, and SQLite on the backend, and supports automated API testing and documentation generation.
 
-This is a simple **Task Manager project** built with **Node.js**, **Express**, and **SQLite**.  
-It provides a REST API for managing tasks, a Bootstrap-styled frontend to interact with the API, and comprehensive **unit**, **integration**, and **API tests**.
+![Task Manager UI](assets\task-manager-ui.png)
 
 ---
 
 ## 🚀 Features
 
-- RESTful API with Create, Read, Update, Delete (CRUD) operations
-- SQLite file-based database (`tasks.db`) — no separate DB server needed
-- Bootstrap frontend (HTML + JS) served by the same Express server
-- Unit tests (mocked + real DB), integration tests, API tests
-- 80%+ code coverage
+- ✅ Add, update, and delete tasks
+- 📝 View all tasks in a clean JSON format
+- 📦 RESTful API built using Express.js
+- 🧩 SQLite database integration
+- 📄 Swagger documentation (OpenAPI 3.0)
+- 🤖 Keploy-based test case generation
+- 🔁 CI/CD integration with GitHub Actions
 
 ---
 
-## 📂 Project Structure
+## 📂 API Endpoints
+
+| Method | Endpoint             | Description         |
+|--------|----------------------|---------------------|
+| GET    | `/api/tasks`         | Get all tasks       |
+| GET    | `/api/tasks/:id`     | Get task by ID      |
+| POST   | `/api/tasks`         | Create new task     |
+| PUT    | `/api/tasks/:id`     | Update task by ID   |
+| DELETE | `/api/tasks/:id`     | Delete task by ID   |
+
+---
+
+## 🔗 Swagger Documentation
+
+- **Swagger UI:** [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+- **OpenAPI JSON Schema:** `/swagger-output.json`
+
+![Swagger UI](assets\swagger-ui.png)
+
+---
+
+## 🔬 Keploy API Testing
+
+This project uses **Keploy** to record and replay API calls for test generation using real-time traffic. This ensures high test coverage with minimal effort.
+
+### 🔁 Example Test Report
+
+![Keploy Report](assets\keploy test image.jpg)
+
+---
+
+## 🏗️ Project Structure
 
 ```
-task-manager-sqlite/
-├── server.js            # Express server + API routes + DB logic
-├── index.html           # Frontend (Bootstrap + JS)
-├── package.json         # Project config + dependencies
-├── tasks.db             # SQLite DB file (auto-created at runtime)
-├── tests/
-│   ├── api.test.js      # API endpoint tests (Supertest)
-│   ├── integration.test.js # Integration tests (real DB)
-│   ├── unit.test.js     # Unit tests (non-mocked DB logic)
-│   └── mocked.unit.test.js # Unit tests (mocked DB)
-├── .gitignore           # Ignore node_modules, tasks.db, coverage
-└── coverage.png         # Test coverage screenshot (add yours here)
+task-manager/
+├── routes/
+│   └── tasks.js           # All API routes
+├── server.js              # Express server entry point
+├── swagger.js             # Swagger setup
+├── generate-swagger.js    # Swagger JSON generator
+├── swagger-output.json    # Generated OpenAPI spec
+├── tasks.db               # SQLite DB file
+└── public/
+    └── index.html         # Optional frontend (static)
 ```
 
 ---
 
-## 📌 API Endpoints
+## 📄 Example Request
 
-### `GET /api/tasks`
-➡ Get all tasks  
-**Example response**
-```json
-[
-  {
-    "id": 1,
-    "title": "Sample Task",
-    "description": "Example description",
-    "completed": 0
-  }
-]
-```
+### POST `/api/tasks`
 
----
-
-### `GET /api/tasks/:id`
-➡ Get a task by ID  
-**Example response**
 ```json
 {
-  "id": 1,
-  "title": "Sample Task",
-  "description": "Example description",
-  "completed": 0
+  "title": "Finish report",
+  "description": "Complete by EOD",
+  "completed": false
 }
 ```
 
 ---
 
-### `POST /api/tasks`
-➡ Create a new task  
-**Request body**
-```json
-{
-  "title": "New Task",
-  "description": "Details of the task"
-}
-```
-**Example response**
-```json
-{
-  "id": 2,
-  "title": "New Task",
-  "description": "Details of the task",
-  "completed": 0
-}
-```
+## ⚙️ How to Run the Project
 
----
+### 🔧 Setup
 
-### `PUT /api/tasks/:id`
-➡ Update a task  
-**Request body**
-```json
-{
-  "title": "Updated Task",
-  "description": "Updated description",
-  "completed": 1
-}
-```
-**Example response**
-```json
-{
-  "message": "Task updated"
-}
-```
-
----
-
-### `DELETE /api/tasks/:id`
-➡ Delete a task  
-**Example response**
-```json
-{
-  "message": "Task deleted"
-}
-```
-
----
-
-## 🗄 Database Used and Integration
-
-- **Database:** SQLite (via `sqlite3` NPM package)  
-- The DB file `tasks.db` is auto-created at runtime.
-- **Schema:**
-```sql
-CREATE TABLE IF NOT EXISTS tasks (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT NOT NULL,
-  description TEXT,
-  completed INTEGER DEFAULT 0
-);
-```
-- Integrated using:
-```javascript
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./tasks.db');
-```
-
----
-
-## ⚙ How to Run the Application
-
-1️⃣ Clone the repository
 ```bash
-git clone https://github.com/yourusername/task-manager-sqlite.git
-cd task-manager-sqlite
-```
-
-2️⃣ Install dependencies
-```bash
+git clone https://github.com/your-username/task-manager.git
+cd task-manager
 npm install
 ```
 
-3️⃣ Run the server
+### ▶️ Start Server
+
 ```bash
-node server.js
+npm run dev
 ```
-✅ App URL:  
-http://localhost:3000/
+
+> Server runs on: `http://localhost:3000`
 
 ---
 
-## 💻 How to Run the Frontend Locally
+## 🧪 Testing
 
-Open your browser at:
-```
-http://localhost:3000/
-```
-✅ Frontend lets you:
-- Add tasks
-- View all tasks
-- Update/complete tasks
-- Delete tasks
+### Run Keploy in another terminal:
 
----
-
-## 🧪 How to Run Tests
-
-Run all tests + coverage:
 ```bash
-npm test -- --coverage
+keploy record -c "npm run dev" --delay 5
 ```
-✅ This includes:
-- Unit tests (mocked + real DB)
-- Integration tests
-- API tests
+
+Then use Postman or Swagger UI to trigger requests.
+
+### Replay tests:
+
+```bash
+keploy test
+```
 
 ---
 
-## 🛠 Tech Stack
+## 🔁 CI/CD
 
-- **Node.js**
-- **Express**
-- **SQLite3**
-- **Jest** (unit, integration tests)
-- **Supertest** (API tests)
-- **Bootstrap (frontend)**
+This project includes a GitHub Actions workflow that runs API tests using Keploy on every push.
 
----
+```yaml
+# .github/workflows/keploy.yml
+name: Keploy Tests
 
-## 📊 Test Coverage
+on: [push, pull_request]
 
-✅ We aimed for **70%+ code coverage** — we achieved:
-
-| Metric      | Coverage |
-|-------------|----------|
-| Statements  | 81.48%   |
-| Branches    | 66.66%   |
-| Functions   | 84.61%   |
-| Lines       | 93.02%   |
-
-### Screenshot:
-![Test Coverage](./coverage.png)
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+      - run: npm install
+      - run: keploy test
+```
 
 ---
 
-## ✅ Notes
+## 📝 License
 
-- You can extend the app with auth, pagination, deployment, etc.
-- This is a simple starter fullstack CRUD app with solid test coverage.
+MIT License
+
+---
+
+## 👨‍💻 Author
+
+Nikhil Dwivedi – [@nikhil](https://github.com/devilsrage)

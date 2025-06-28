@@ -1,0 +1,6 @@
+express
+sqlite3
+swagger-jsdoc
+swagger-ui-express
+nodemon
+dotenv
