@@ -2,7 +2,7 @@
 
 **Task Manager** is a full-stack application that allows users to manage their daily tasks with ease. The app is built with Node.js, Express, and SQLite on the backend, and supports automated API testing and documentation generation.
 
-![Task Manager UI](assets\task-manager-ui.png)
+<img src="assets/task-manager-ui.png" alt="Task Manager UI"/>
 
 ---
 
@@ -35,7 +35,7 @@
 - **Swagger UI:** [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 - **OpenAPI JSON Schema:** `/swagger-output.json`
 
-![Swagger UI](assets\swagger-ui.png)
+<img src="assets/swagger-ui.png" alt="Swagger UI"/>
 
 ---
 
@@ -45,7 +45,7 @@ This project uses **Keploy** to record and replay API calls for test generation 
 
 ### 🔁 Example Test Report
 
-![Keploy Report](assets\keploy test image.jpg)
+<img src="assets/keploy test image.jpg" alt="tests"/>
 
 ---
 
